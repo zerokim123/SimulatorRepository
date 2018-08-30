@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>新規クーポン登録</title>
+<link rel="stylesheet" href="/css/bootstrap.css" />
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.js"></script>
+</head>
+<body>
+ <div th:replace="lyout/header.html::body"></div>
+ <div th:replace="lyout/menu.html::body"></div>
+ <div class="container">
+  <h1>登録情報</h1>
+  <form th:action="@{/coupons}" th:method="post">
+   <div class="form-group">
+    <label class="control-label">提携先ユーザID (※必須項目)</label> <input class="form-control" type="text"
+     name="partnerCompUserId" />
+   </div>
+   <div class="form-group">
+    <label class="control-label">キャンペーンID</label> <input class="form-control" type="text" name="campaignId" />
+   </div>
+   <div class="form-group">
+    <label class="control-label">キャンペーン名称名</label> <input class="form-control" type="text" name="campaignName" />
+   </div>
+   <div class="form-group">
+    <label class="control-label">キャンペーン説明文</label> <input class="form-control" type="text" name="campaignComment" />
+   </div>
+   <!--<div class="form-group">
+    <label class="control-label">インセンティブ提供方法</label> <input class="form-control" type="text" name="incentiveOfferType" />
+   </div> -->
+   <div class="form-group">
+    <label class="control-label" for="exampleSelect">インセンティブ提供方法</label> <select class="form-control" id="selectItems"
+     name="incentiveOfferType">
+     <option value="0">0(割引)</option>
+     <option th:each="item : ${selectItems}" th:value="${item.value}" th:text="${item.key}"
+      th:selected="${item.value} == *{selectItems}">pulldown</option>
+    </select>
+   </div>
+   <!-- <div class="form-group">
+    <label class="control-label">金額入力設定有無</label> <input class="form-control" type="text" name="kingkExistFlg" />
+   </div> -->
+   <div class="form-group">
+    <label class="control-label" for="exampleSelect">金額入力設定有無</label> <select class="form-control" id="selectKingkItems"
+     name="kingkExistFlg">
+     <option value="1">1(あり)</option>
+     <option th:each="item : ${selectKingkItems}" th:value="${item.value}" th:text="${item.key}"
+      th:selected="${item.value} == *{selectKingkItems}">pulldown</option>
+    </select>
+   </div>
+   <div class="form-group">
+    <label class="control-label">最低金額</label> <input class="form-control" type="text" name="targetKingkMin" />
+   </div>
+   <!-- <div class="form-group">
+    <label class="control-label">取引区分</label> <input class="form-control" type="text" name="registCancelDivision" />
+   </div> -->
+   <div class="form-group">
+    <label class="control-label" for="exampleSelect">取引区分(利用業務用)</label> <select class="form-control"
+     id="selectTradeItems" name="registCancelDivision">
+     <option value="1">1:利用</option>
+     <option th:each="item : ${selectTradeItems}" th:value="${item.value}" th:text="${item.key}"
+      th:selected="${item.value} == *{selectTradeItems}">pulldown</option>
+    </select>
+   </div>
+   <div class="form-group">
+    <label class="control-label">残高</label> <input class="form-control" type="number" name="balance" />
+   </div>
+   <div class="form-group">
+    <label class="control-label">クーポン残利用回数</label> <input class="form-control" type="number" name="couponRemainUseNum" />
+   </div>
+   <div class="form-group">
+    <label class="control-label">優待金額</label> <input class="form-control" type="number" name="discountKingk" />
+   </div>
+   <button class="btn btn-default" type="submit">登録</button>
+  </form>
+  <div class="pull-right">
+   <a class="btn btn-link" href="/coupons">一覧画面へ</a>
+  </div>
+ </div>
+</body>
+</html>

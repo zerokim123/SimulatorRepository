@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>取引管理</title>
+<link rel="stylesheet" href="/css/bootstrap.css" />
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.js"></script>
+</head>
+<body>
+ <div th:replace="lyout/header.html::body"></div>
+ <div th:replace="lyout/menu.html::body"></div>
+ <div class="container">
+  <h1>取引一覧</h1>
+  <table class="table">
+   <thead>
+    <tr class="info">
+     <th>クーポントランザクションID</th>
+     <th>端末ログインID</th>
+     <th>提携先ユーザID</th>
+     <th>キャンペーン利用日時</th>
+     <th>取引金額</th>
+     <th>取引区分</th>
+     <th>ステータス</th>
+     <th></th>
+     <th></th>
+     <th></th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr th:each="tradeInfo : ${tradeInfo}">
+     <td th:text="${tradeInfo.transactionId}"></td>
+     <td th:text="${tradeInfo.terminalLoinId}"></td>
+     <td th:text="${tradeInfo.partnerCompUserId}">W</td>
+     <td th:text="${tradeInfo.tradeTime}"></td>
+     <td th:text="${tradeInfo.transactionKingk}"></td>
+     <td th:text="${tradeInfo.registCancelDivision}"></td>
+     <td th:text="${tradeInfo.status}"></td>
+     <td><a class="btn btn-default btn-xs" th:href="@{/trades/{id}(id=${tradeInfo.transactionId})}">詳細</a></td>
+     <td>
+     <td><a class="btn btn-default btn-xs" th:href="@{/trades/{id}/edit(id=${tradeInfo.transactionId})}">編集</a></td>
+     <td>
+      <!-- ⑤ -->
+      <form th:action="@{/trades/{id}(id=${tradeInfo.transactionId})}" th:method="delete">
+       <input class="btn btn-default btn-xs" type="submit" value="削除" />
+      </form>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+</body>
+</html>

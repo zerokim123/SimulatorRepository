@@ -1,0 +1,34 @@
+<!--?xml version="1.0" encoding="UTF-8" ? -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.simulator.dataservice.mapper.CouponInfoMapper">
+    <update id="insertByValu" parameterType="com.simulator.dataservice.entity.CouponInfoEntity">
+        INSERT INTO COUPON_INFO
+        (
+        PARTNER_COMP_USER_ID
+        ,CAMPAIGN_ID
+        ,CAMPAIGN_NAME
+        ,CAMPAIGN_COMMENT
+        ,INCENTIVE_OFFER_TYPE
+        ,KINGK_EXIST_FLG
+        ,TARGET_KINGK_MIN
+        ,REGIST_CANCEL_DIVISION
+        ,BALANCE
+        ,COUPON_REMAIN_USE_NUM
+        ,DISCOUNT_KINGK
+        )
+        VALUES
+        (
+        #{partnerCompUserId}
+        ,#{campaignId}
+        ,#{campaignName}
+        ,#{campaignComment}
+        ,#{incentiveOfferType}
+        ,#{kingkExistFlg}
+        ,#{targetKingkMin}
+        ,#{registCancelDivision}
+        ,#{balance}
+        ,#{couponRemainUseNum}
+        ,#{discountKingk}
+        )
+    </update>
+</mapper>

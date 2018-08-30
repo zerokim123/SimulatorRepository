@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>新規ユーザ登録</title>
+<link rel="stylesheet" href="/css/bootstrap.css" />
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.js"></script>
+</head>
+<body>
+ <div th:replace="lyout/header.html::body"></div>
+ <div th:replace="lyout/menu.html::body"></div>
+ <div class="container">
+  <h1>登録情報</h1>
+  <form th:action="@{/users}" th:method="post">
+   <div class="form-group">
+    <label class="control-label">ログインID (注：必須入力項目)</label><input class="form-control" type="text" name="terminalLoginId" />
+   </div>
+   <div class="form-group">
+    <label class="control-label">事業者名</label> <input class="form-control" type="text" name="companyName" />
+   </div>
+   <div class="form-group">
+    <label class="control-label">館名</label> <input class="form-control" type="text" name="buildingName" />
+   </div>
+   <div class="form-group">
+    <label class="control-label">店舗名</label> <input class="form-control" type="text" name="storeName" />
+   </div>
+   <div class="form-group">
+    <label class="control-label">ログインパスワード</label> <input class="form-control" type="text" name="loginPass" />
+   </div>
+   <div class="form-group">
+    <label class="control-label" for="inputDate">有効期限(YYYY/MM/DD)</label> <input type="text" class="form-control"
+     id="inputDate" name="displayExpDate" />
+   </div>
+   <div class="form-group">
+    <label class="control-label">提携先ユーザID開始位置</label> <input class="form-control" type="number"
+     name="partnerUserIdStrat" />
+   </div>
+   <div class="form-group">
+    <label class="control-label">提携先ユーザID終了位置</label> <input class="form-control" type="number" name="partnerUserIdEnd" />
+   </div>
+   <div class="form-group">
+    <label class="control-label" for="exampleSelect">ログイン制御</label> <select class="form-control" id="exampleSelect"
+     name="loginControl">
+     <option value="0">0:正常</option>
+     <option th:each="item : ${selectLoginItems}" th:value="${item.value}" th:text="${item.key}"
+      th:selected="${item.value} == *{loginControl}">pulldown</option>
+    </select>
+   </div>
+   <div class="form-group">
+    <label class="control-label" for="exampleSelect">パスワード更新制御</label> <select class="form-control" id="exampleSelect"
+     name="updateControl">
+     <option value="0">0:正常</option>
+     <option th:each="item : ${selectTradeContItems}" th:value="${item.value}" th:text="${item.key}"
+      th:selected="${item.value} == *{updateControl}">pulldown</option>
+    </select>
+   </div>
+   <div class="form-group">
+    <label class="control-label" for="exampleSelect">利用確認制御</label> <select class="form-control" id="exampleSelect"
+     name="confirmControl">
+     <option value="0">0:正常</option>
+     <option th:each="item : ${selectTradeContItems}" th:value="${item.value}" th:text="${item.key}"
+      th:selected="${item.value} == *{confirmControl}">pulldown</option>
+    </select>
+   </div>
+   <div class="form-group">
+    <label class="control-label" for="exampleSelect">クーポン消込制御_消込なし</label> <select class="form-control"
+     id="exampleSelect" name="useOffControl">
+     <option value="0">0:正常</option>
+     <option th:each="item : ${selectTradeContItems}" th:value="${item.value}" th:text="${item.key}"
+      th:selected="${item.value} == *{useOffControl}">pulldown</option>
+    </select>
+   </div>
+   <div class="form-group">
+    <label class="control-label" for="exampleSelect">クーポン消込制御_消込あり</label> <select class="form-control"
+     id="exampleSelect" name="useOnControl">
+     <option value="0">0:正常</option>
+     <option th:each="item : ${selectTradeContItems}" th:value="${item.value}" th:text="${item.key}"
+      th:selected="${item.value} == *{useOnControl}">pulldown</option>
+    </select>
+   </div>
+   <div class="form-group">
+    <label class="control-label" for="exampleSelect">取引一覧照会制御</label> <select class="form-control" id="exampleSelect"
+     name="rusultControl">
+     <option value="0">0:正常</option>
+     <option th:each="item : ${selectTradeContItems}" th:value="${item.value}" th:text="${item.key}"
+      th:selected="${item.value} == *{rusultControl}">pulldown</option>
+    </select>
+   </div>
+   <div class="form-group">
+    <label class="control-label" for="exampleSelect">詳細照会制御</label> <select class="form-control" id="exampleSelect"
+     name="detailControl">
+     <option value="0">0:正常</option>
+     <option th:each="item : ${selectTradeContItems}" th:value="${item.value}" th:text="${item.key}"
+      th:selected="${item.value} == *{detailControl}">pulldown</option>
+    </select>
+   </div>
+   <div class="form-group">
+
+    <label class="control-label" for="exampleSelect">取消制御</label> <select class="form-control" id="exampleSelect"
+     name="cancelControl">
+     <option value="0">0:正常</option>
+     <option th:each="item : ${selectTradeContItems}" th:value="${item.value}" th:text="${item.key}"
+      th:selected="${item.value} == *{cancelControl}">pulldown</option>
+    </select>
+   </div>
+   <button class="btn btn-default" type="submit">登録</button>
+  </form>
+  <div class="pull-right">
+   <a class="btn btn-link" href="/coupons">一覧画面へ</a>
+  </div>
+ </div>
+</body>
+</html>

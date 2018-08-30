@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>クーポン一覧</title>
+<link rel="stylesheet" href="css/bootstrap.css" />
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.js"></script>
+</head>
+<body>
+ <div th:replace="lyout/header.html::body"></div>
+ <div th:replace="lyout/menu.html::body"></div>
+ <div class="container">
+  <h1>利用可能クーポン一覧</h1>
+  <table class="table">
+   <thead>
+    <tr class="info">
+     <th>提携先ユーザID</th>
+     <th>インセンティブ提供方法</th>
+     <th>金額入力設定有無</th>
+     <th>最低金額</th>
+     <th>残高</th>
+     <th>クーポン残利用回数</th>
+     <th>優待金額</th>
+     <th></th>
+     <th></th>
+     <th></th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr th:each="couponInfo : ${couponInfo}">
+     <td th:text="${couponInfo.partnerCompUserId}">ABW</td>
+     <td th:text="${couponInfo.incentiveOfferType}">ABW</td>
+     <td th:text="${couponInfo.kingkExistFlg}">ABW</td>
+     <td th:text="${couponInfo.targetKingkMin}">ABW</td>
+     <td th:text="${couponInfo.balance}">ABW</td>
+     <td th:text="${couponInfo.couponRemainUseNum}">ABW</td>
+     <td th:text="${couponInfo.discountKingk}">ABW</td>
+     <td><a class="btn btn-default btn-xs" th:href="@{/coupons/{id}(id=${couponInfo.partnerCompUserId})}">詳細</a></td>
+     <td>
+     <td><a class="btn btn-default btn-xs" th:href="@{/coupons/{id}/edit(id=${couponInfo.partnerCompUserId})}">編集</a></td>
+     <td>
+      <!-- ⑤ -->
+      <form th:action="@{/coupons/{id}(id=${couponInfo.partnerCompUserId})}" th:method="delete">
+       <input class="btn btn-default btn-xs" type="submit" value="削除" />
+      </form>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <a class="btn btn-default" href="/coupons/new">新規作成</a>
+ </div>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!--?xml version="1.0" encoding="UTF-8" ? -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.simulator.dataservice.mapper.TradeInfoMapMapper">
+    <select id="selectTradeListByValue" parameterType="com.simulator.dataservice.entity.TradeInfoEntity"
+        resultType="com.simulator.dataservice.entity.TradeInfoEntity">
+        SELECT
+        TRANSACTION_ID AS transactionId
+        , TERMINAL_LOGIN_ID AS terminalLoinId
+        , PARTNER_COMP_USER_ID AS partnerCompUserId
+        , TRADE_TIME AS tradeTime
+        , TRANSACTION_KINGK AS transactionKingk
+        , AFTER_DISCOUNT_KINGK AS afterDiscountKingk
+        , DISCOUNT_KINGK AS discountKingk
+        , INCENTIVE_OFFER_TYPE AS incentiveOfferType
+        , CAMPAIGN_NAME AS campaignName
+        , CAMPAIGN_COMMENT AS campaignComment
+        , REGIST_CANCEL_DIVISION AS registCancelDivision
+        , STATUS AS status
+        , COUPON_REMAIN_USE_NUM AS couponRemainUseNum
+        FROM TRADE_INFO
+        WHERE
+        TERMINAL_LOGIN_ID = #{terminalLoinId}
+        AND
+        TO_CHAR(TRADE_TIME, 'YYYYMMDD') = TO_CHAR(#{tradeTime}, 'YYYYMMDD')
+        ORDER BY
+        TRADE_TIME DESC
+    </select>
+    <select id="selectByPk" resultType="com.simulator.dataservice.entity.TradeInfoEntity">
+        SELECT
+        TRANSACTION_ID AS transactionId
+        , TERMINAL_LOGIN_ID AS terminalLoinId
+        , PARTNER_COMP_USER_ID AS partnerCompUserId
+        , TRADE_TIME AS tradeTime
+        , TRANSACTION_KINGK AS transactionKingk
+        , AFTER_DISCOUNT_KINGK AS afterDiscountKingk
+        , DISCOUNT_KINGK AS discountKingk
+        , INCENTIVE_OFFER_TYPE AS incentiveOfferType
+        , CAMPAIGN_NAME AS campaignName
+        , CAMPAIGN_COMMENT AS campaignComment
+        , REGIST_CANCEL_DIVISION AS registCancelDivision
+        , STATUS AS status
+        , COUPON_REMAIN_USE_NUM AS couponRemainUseNum
+        FROM TRADE_INFO
+        WHERE TRANSACTION_ID = #{transactionId}
+    </select>
+    <update id="updateStsByPk" parameterType="com.simulator.dataservice.entity.TradeInfoEntity">
+        UPDATE TRADE_INFO
+        SET
+        STATUS = #{status}
+        WHERE TRANSACTION_ID =
+        #{transactionId}
+    </update>
+    <insert id="insertByValue" parameterType="com.simulator.dataservice.entity.TradeInfoEntity">
+        INSERT INTO TRADE_INFO
+        (
+        TRANSACTION_ID
+        ,TERMINAL_LOGIN_ID
+        ,PARTNER_COMP_USER_ID
+        ,TRADE_TIME
+        ,TRANSACTION_KINGK
+        ,AFTER_DISCOUNT_KINGK
+        ,DISCOUNT_KINGK
+        ,INCENTIVE_OFFER_TYPE
+        ,CAMPAIGN_NAME
+        ,CAMPAIGN_COMMENT
+        ,REGIST_CANCEL_DIVISION
+        ,STATUS
+        ,COUPON_REMAIN_USE_NUM
+        )
+        VALUES
+        (
+        #{transactionId}
+        ,#{terminalLoinId}
+        ,#{partnerCompUserId}
+        ,SYSDATE
+        ,#{transactionKingk}
+        ,#{afterDiscountKingk}
+        ,#{discountKingk}
+        ,#{incentiveOfferType}
+        ,#{campaignName}
+        ,#{campaignComment}
+        ,#{registCancelDivision}
+        ,#{status}
+        ,#{couponRemainUseNum}
+        )
+    </insert>
+</mapper>

@@ -1,0 +1,82 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>取引情報</title>
+<link rel="stylesheet" href="/css/bootstrap.css" />
+
+</head>
+
+<body>
+ <div th:replace="lyout/header.html::body"></div>
+ <div th:replace="lyout/menu.html::body"></div>
+ <div class="container">
+  <div class="page-header">
+   <h1>取引詳細情報</h1>
+  </div>
+  <div class="row">
+   <div class="col-md-12">
+    <table class="table table-striped table-bordered" style="table-layout: fixed; width: 100%;" th:object="${tradeInfo}">
+     <tr>
+      <th class="col-md-3">クーポントランザクションID</th>
+      <td class="col-md-9" th:text="*{transactionId}"></td>
+     </tr>
+     <tr>
+      <th class="col-md-3">端末ログインID</th>
+      <td class="col-md-9" th:text="*{terminalLoinId}"></td>
+     </tr>
+     <tr>
+      <th class="col-md-3">提携先ユーザID</th>
+      <td class="col-md-9" th:text="*{partnerCompUserId}"></td>
+     </tr>
+     <tr>
+      <th class="col-md-3">キャンペーン利用日時</th>
+      <td th:text="*{tradeTime}"></td>
+     </tr>
+     <tr>
+      <th class="col-md-3">取引金額</th>
+      <td th:text="*{transactionKingk}"></td>
+     </tr>
+     <tr>
+      <th class="col-md-3">優待後金額</th>
+      <td th:text="*{afterDiscountKingk}"></td>
+     </tr>
+     <tr>
+      <th class="col-md-3">優待金額</th>
+      <td th:text="*{discountKingk}"></td>
+     </tr>
+     <tr>
+      <th class="col-md-3">インセンティブ提供方法</th>
+      <td th:text="*{incentiveOfferType}"></td>
+     </tr>
+     <tr>
+      <th class="col-md-3">キャンペーン名称</th>
+      <td th:text="*{campaignName}"></td>
+     </tr>
+     <tr>
+      <th class="col-md-3">キャンペーン説明文</th>
+      <td th:text="*{campaignComment}"></td>
+     </tr>
+     <tr>
+      <th class="col-md-3">取引区分</th>
+      <td th:text="*{registCancelDivision}"></td>
+     </tr>
+     <tr>
+      <th class="col-md-3">ステータス</th>
+      <td th:text="*{status}"></td>
+     </tr>
+     <tr>
+      <th class="col-md-3">クーポン残利用回数</th>
+      <td th:text="*{couponRemainUseNum}"></td>
+     </tr>
+    </table>
+   </div>
+  </div>
+  <div>
+   <a class="btn btn-default" th:href="@{/trades/{id}/edit(id=*{transactionId})}">編集</a>
+  </div>
+  <div class="pull-right">
+   <a class="btn btn-link" href="/trades">一覧画面へ</a>
+  </div>
+ </div>
+</body>
+</html>

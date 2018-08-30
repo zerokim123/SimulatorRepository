@@ -1,0 +1,51 @@
+<!--?xml version="1.0" encoding="UTF-8" ? -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.simulator.dataservice.mapper.LoginMngmtMapper">
+    <update id="updateLoginPassByPK" parameterType="com.simulator.dataservice.entity.LoginMngmtEntity">
+        UPDATE LOGIN_MNGMT T1
+        SET
+        LOGIN_PASS = #{loginPass}
+        ,EXP_DATE = SYSDATE + 7
+        WHERE T1.TERMINAL_LOGIN_ID = #{terminalLoginId}
+    </update>
+    <insert id="insertValu" parameterType="com.simulator.dataservice.entity.LoginMngmtEntity">
+        INSERT INTO LOGIN_MNGMT
+        (
+        TERMINAL_LOGIN_ID
+        ,COMPANY_NAME
+        ,BUILDING_NAME
+        ,STORE_NAME
+        ,LOGIN_PASS
+        ,EXP_DATE
+        ,PARTNER_USER_ID_STRAT
+        ,PARTNER_USER_ID_END
+        ,LOGIN_CONTROL
+        ,UPDATE_CONTROL
+        ,CONFIRM_CONTROL
+        ,USE_OFF_CONTROL
+        ,USE_ON_CONTROL
+        ,RUSULT_CONTROL
+        ,CANCEL_CONTROL
+        ,DETAIL_CONTROL
+        )
+        VALUES
+        (
+         #{terminalLoginId}
+        ,#{companyName}
+        ,#{buildingName}
+        ,#{storeName}
+        ,#{loginPass}
+        ,#{expDate}
+        ,#{partnerUserIdStrat}
+        ,#{partnerUserIdEnd}
+        ,#{loginControl}
+        ,#{updateControl}
+        ,#{confirmControl}
+        ,#{useOffControl}
+        ,#{useOnControl}
+        ,#{rusultControl}
+        ,#{cancelControl}
+        ,#{detailControl}
+        )
+    </insert>
+</mapper>

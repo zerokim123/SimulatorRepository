@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>ユーザ管理</title>
+<link rel="stylesheet" href="/css/bootstrap.css" />
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.js"></script>
+</head>
+<body>
+ <div th:replace="lyout/header.html::body"></div>
+ <div th:replace="lyout/menu.html::body"></div>
+ <div class="container">
+  <h1>USER一覧</h1>
+  <table class="table">
+   <thead>
+    <tr class="info">
+     <th>LonginID</th>
+     <th>事業者名</th>
+     <th>館名</th>
+     <th>店舗名</th>
+     <th>LonginPassward</th>
+     <th>有効期限</th>
+     <th></th>
+     <th></th>
+     <th></th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr th:each="userInfo : ${userInfo}">
+     <td th:text="${userInfo.terminalLoginId}"></td>
+     <td th:text="${userInfo.companyName}"></td>
+     <td th:text="${userInfo.buildingName}">W</td>
+     <td th:text="${userInfo.storeName}"></td>
+     <td th:text="${userInfo.loginPass}"></td>
+     <td th:text="${userInfo.displayExpDate}"></td>
+     <td><a class="btn btn-default btn-xs" th:href="@{/users/{id}(id=${userInfo.terminalLoginId})}">詳細</a></td>
+     <td>
+     <td><a class="btn btn-default btn-xs" th:href="@{/users/{id}/edit(id=${userInfo.terminalLoginId})}">編集</a></td>
+     <td>
+      <!-- ⑤ -->
+      <form th:action="@{/users/{id}(id=${userInfo.terminalLoginId})}" th:method="delete">
+       <input class="btn btn-default btn-xs" type="submit" value="削除" />
+      </form>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <a class="btn btn-default" href="/users/new">新規作成</a>
+ </div>
+</body>
+</html>

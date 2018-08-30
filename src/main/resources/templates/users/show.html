@@ -1,0 +1,94 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>ユーザ情報</title>
+<link rel="stylesheet" href="/css/bootstrap.css" />
+
+</head>
+
+<body>
+ <div th:replace="lyout/header.html::body"></div>
+ <div th:replace="lyout/menu.html::body"></div>
+ <div class="container">
+  <div class="page-header">
+   <h1>ログインユーザ詳細情報</h1>
+  </div>
+  <div class="row">
+   <div class="col-md-12">
+    <table class="table table-striped table-bordered" style="table-layout: fixed; width: 100%;" th:object="${userInfo}">
+     <tr>
+      <th class="col-md-3">ログインID</th>
+      <td class="col-md-9" th:text="*{terminalLoginId}"></td>
+     </tr>
+     <tr>
+      <th class="col-md-3">事業者名</th>
+      <td class="col-md-9" th:text="*{companyName}"></td>
+     </tr>
+     <tr>
+      <th class="col-md-3">館名</th>
+      <td th:text="*{buildingName}"></td>
+     </tr>
+     <tr>
+      <th class="col-md-3">店舗名</th>
+      <td th:text="*{storeName}"></td>
+     </tr>
+     <tr>
+      <th class="col-md-3">ログインパスワード</th>
+      <td th:text="*{loginPass}"></td>
+     </tr>
+     <tr>
+      <th class="col-md-3">有効期限</th>
+      <td th:text="*{displayExpDate}"></td>
+     </tr>
+     <tr>
+      <th class="col-md-3">提携先ユーザID開始位置</th>
+      <td th:text="*{partnerUserIdStrat}"></td>
+     </tr>
+     <tr>
+      <th class="col-md-3">提携先ユーザID終了位置</th>
+      <td th:text="*{partnerUserIdEnd}"></td>
+     </tr>
+     <tr>
+      <th class="col-md-3">ログイン制御</th>
+      <td th:text="*{loginControl}"></td>
+     </tr>
+     <tr>
+      <th class="col-md-3">パスワード更新制御</th>
+      <td th:text="*{updateControl}"></td>
+     </tr>
+     <tr>
+      <th class="col-md-3">利用確認制御</th>
+      <td th:text="*{confirmControl}"></td>
+     </tr>
+     <tr>
+      <th class="col-md-3">クーポン消込制御_消込なし</th>
+      <td th:text="*{useOffControl}"></td>
+     </tr>
+     <tr>
+      <th class="col-md-3">クーポン消込制御_消込あり</th>
+      <td th:text="*{useOnControl}"></td>
+     </tr>
+     <tr>
+      <th class="col-md-3">取引一覧照会制御</th>
+      <td th:text="*{rusultControl}"></td>
+     </tr>
+     <tr>
+      <th class="col-md-3">詳細照会制御</th>
+      <td th:text="*{detailControl}"></td>
+     </tr>
+     <tr>
+      <th class="col-md-3">取消制御</th>
+      <td th:text="*{cancelControl}"></td>
+     </tr>
+    </table>
+   </div>
+  </div>
+  <div>
+   <a class="btn btn-default" th:href="@{/users/{id}/edit(id=*{terminalLoginId})}">編集</a>
+  </div>
+  <div class="pull-right">
+   <a class="btn btn-link" href="/users">一覧画面へ</a>
+  </div>
+ </div>
+</body>
+</html>
